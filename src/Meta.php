@@ -9,6 +9,9 @@ class Meta extends Model
 {
     use HasMedia;
 
+    const OG_MEDIA_GROUP_NAME = 'og_image';
+    const OG_CONVERSION_NAME = 'og_image';
+
     /**
      * @var string The name of the underlying database table.
      */
@@ -25,6 +28,6 @@ class Meta extends Model
 
     public function registerMediaGroups()
     {
-        $this->addMediaGroup('og_image')->performConversions('og_image');
+        $this->addMediaGroup(self::OG_MEDIA_GROUP_NAME)->performConversions(self::OG_CONVERSION_NAME);
     }
 }
