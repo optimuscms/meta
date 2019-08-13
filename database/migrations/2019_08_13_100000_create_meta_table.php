@@ -10,31 +10,20 @@ class CreateMetaTable extends Migration
     {
         Schema::create('meta', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title', 100);
-            $table->string('description', 200);
-            $table->string('og_title', 100);
-            $table->string('og_description', 200);
-            $table->unsignedBigInteger('og_image_id');
-            $table->text('custom_tags');
-            $table->timestamps();
-        });
-
-        Schema::create('metables', function (Blueprint $table) {
-            $table->unsignedBigInteger('meta_id')->index();
             $table->unsignedBigInteger('metable_id')->index();
             $table->string('metable_type');
-            $table->string('group');
-
-            $table->foreign('meta_id')
-                  ->references('id')
-                  ->on('meta')
-                  ->onDelete('cascade');
+            $table->string('title', 100)->nullable();
+            $table->string('description', 200)->nullable();
+            $table->string('og_title', 100)->nullable();
+            $table->string('og_description', 200)->nullable();
+            $table->unsignedBigInteger('og_image_id')->nullable();
+            $table->text('custom_tags')->nullable();
+            $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('metables');
         Schema::dropIfExists('meta');
     }
 }
