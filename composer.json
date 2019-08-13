@@ -9,21 +9,21 @@
     "require-dev": {
         "orchestra/testbench": "^3.8"
     },
-  "autoload": {
-    "psr-4": {
-      "Optix\\Meta\\": "src"
+    "autoload": {
+        "psr-4": {
+            "Optix\\Meta\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Optix\\Meta\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Optix\\Meta\\MetaServiceProvider"
+            ]
+        }
     }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Optix\\Meta\\Tests\\": "tests"
-    }
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Optix\\Meta\\MetaServiceProvider"
-      ]
-    }
-  }
 }
