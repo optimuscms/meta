@@ -20,7 +20,7 @@ class TestCase extends BaseTestCase
             $table->timestamps();
         });
 
-        //$this->loadMigrationsFrom(__DIR__.'/../vendor/optix/media/tests/database/migrations');
+        $this->withFactories(__DIR__.'/database/factories');
     }
 
     protected function getPackageProviders($app)
