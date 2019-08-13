@@ -16,7 +16,6 @@ class CreateMetaTable extends Migration
             $table->string('description', 200)->nullable();
             $table->string('og_title', 100)->nullable();
             $table->string('og_description', 200)->nullable();
-            $table->unsignedBigInteger('og_image_id')->nullable();
             $table->text('custom_tags')->nullable();
             $table->timestamps();
         });

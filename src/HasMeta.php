@@ -1,13 +1,13 @@
 <?php
 
-namespace Optix\Media;
+namespace Optix\Meta;
 
+use Optix\Media\Models\Media;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
- * @method static created(\Closure $callback)
- * @method static updated(\Closure $callback)
+ * @property Meta $meta
  */
 trait HasMeta
 {
@@ -22,25 +22,26 @@ trait HasMeta
         return $this->morphOne(Meta::class, 'metable');
     }
 
+    public function saveMeta(array $data = [])
+    {
+        if (!empty($data)) {
+            /** @todo Ideally work out why ->updateOrCreate() doesn't work here */
+            $this->meta()->delete();
+            $this->meta()->create($data);
+
+            // Attach OG image
+            if ( ! empty($data['og_image_id'])) {
+                $media = Media::findOrFail($data['og_image_id']);
+                $this->meta->attachMedia($media, 'og_image', ['og_image']);
+            }
+        }
+    }
+
     /**
-     * Called automatically by Laravel when the model is booted
+     * @return Media|null
      */
-    public static function bootHasMeta() {
-
-        static::created(function ($model) {
-            /** @var HasMeta $model */
-            $meta = request('meta', []);
-            if (!empty($meta)) {
-                $model->meta()->create($meta);
-            }
-        });
-
-        static::updated(function ($model) {
-            /** @var HasMeta $model */
-            $meta = request('meta', []);
-            if (!empty($meta)) {
-                $model->meta()->update($meta);
-            }
-        });
+    public function getOgImage()
+    {
+        return $this->meta ? $this->meta->getFirstMedia('og_image') : null;
     }
 }
