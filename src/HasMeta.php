@@ -32,7 +32,7 @@ trait HasMeta
             // Attach OG image
             if (!empty($data['og_image_id'])) {
                 $media = Media::findOrFail($data['og_image_id']);
-                $this->meta->attachMedia($media, Meta::OG_MEDIA_GROUP_NAME, [Meta::OG_CONVERSION_NAME]);
+                $this->meta->attachMedia($media, Meta::OG_MEDIA_GROUP, [Meta::OG_MEDIA_CONVERSION]);
             }
         }
     }
@@ -42,6 +42,6 @@ trait HasMeta
      */
     public function getOgImage()
     {
-        return $this->meta ? $this->meta->getFirstMedia(Meta::OG_MEDIA_GROUP_NAME) : null;
+        return $this->meta ? $this->meta->getFirstMedia(Meta::OG_MEDIA_GROUP) : null;
     }
 }
