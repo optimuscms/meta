@@ -36,12 +36,4 @@ trait HasMeta
             }
         }
     }
-
-    /**
-     * @return Media|null
-     */
-    public function getOgImage()
-    {
-        return $this->meta ? $this->meta->getFirstMedia(Meta::OG_MEDIA_GROUP) : null;
-    }
 }
