@@ -1,5 +1,5 @@
 {
-    "name": "optix/meta",
+    "name": "optimuscms/meta",
     "description": "Store meta data for the web against your Laravel Models",
     "type": "library",
     "require": {
