@@ -58,17 +58,26 @@ There are a few key concepts that should be understood before continuing:
     {
         ...MODEL_FIELDS,
         meta: {
-            title,
-            description, 
-            og_title, 
-            og_description, 
+            title, // max 100 chars
+            description, // max 200 chars
+            og_title, // max 100 chars
+            og_description, // max 200 chars
+            og_image_id, // the id of a Media Model
             custom_tags // free text field for adding custom HTML
         }
     }
     ``` 
    
-   This package will automatically pick up the contents of the meta field and process it as required.
+   All fields are optional and this package will automatically pick them up and process them as required.
 
+
+## Retrieving OG images
+
+This package also provides a convenient way to retrieve the OG image as a Media Model:
+
+```php
+$media = $myModel->meta->getOgImage();
+```
 
 ## License
 
