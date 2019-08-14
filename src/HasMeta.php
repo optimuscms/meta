@@ -25,9 +25,8 @@ trait HasMeta
     public function saveMeta(array $data = [])
     {
         if (!empty($data)) {
-            /** @todo Ideally work out why ->updateOrCreate() doesn't work here */
-            $this->meta()->delete();
-            $this->meta()->create($data);
+            $this->meta()->updateOrCreate($data);
+            $this->load('meta');
 
             // Attach OG image
             if (!empty($data['og_image_id'])) {
