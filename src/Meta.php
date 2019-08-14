@@ -49,7 +49,8 @@ class Meta extends Model
     public function toArray(): array
     {
         $representation = parent::toArray();
-        $representation['og_image'] = MediaResource::make($this->getOgImage());
+        $ogImage = $this->getOgImage();
+        $representation['og_image'] = $ogImage ? MediaResource::make($this->getOgImage()) : null;
 
         return $representation;
     }
