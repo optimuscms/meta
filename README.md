@@ -9,7 +9,7 @@ when they are presented on the web.
 You can install the package via composer:
 
 ```bash
-composer require optimuscms/media
+composer require optimuscms/meta
 ```
 
 Once installed, you should add the tables used by this package to your database:
