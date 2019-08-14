@@ -5,6 +5,7 @@ namespace Optix\Meta;
 use Optix\Media\HasMedia;
 use Optix\Media\Models\Media;
 use Illuminate\Database\Eloquent\Model;
+use Optimus\Media\Http\Resources\MediaResource;
 
 class Meta extends Model
 {
@@ -38,5 +39,18 @@ class Meta extends Model
     public function getOgImage()
     {
         return $this->getFirstMedia(Meta::OG_MEDIA_GROUP);
+    }
+
+    /**
+     * When presenting the Meta Model on an API endpoint, always include a Media representation of the OG Image.
+     *
+     * @return array
+     */
+    public function toArray(): array
+    {
+        $representation = parent::toArray();
+        $representation['og_image'] = MediaResource::make($this->getOgImage());
+
+        return $representation;
     }
 }
