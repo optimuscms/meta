@@ -25,7 +25,8 @@ trait HasMeta
     public function saveMeta(array $data = [])
     {
         if (!empty($data)) {
-            $this->meta()->updateOrCreate($data);
+            $this->load('meta');
+            $this->meta ? $this->meta()->update($data) : $this->meta()->create($data);
             $this->load('meta');
 
             // Attach OG image
