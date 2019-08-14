@@ -51,6 +51,18 @@ There are a few key concepts that should be understood before continuing:
         });
     }
     ```
+1. (Optional) If your Model appears in an API response, you'll want to add the meta property 
+(either to the Model directly, or in a Resource class if you're using one):
+
+    ```php
+   public function toArray()
+   {
+       return [
+           ...other properties,
+           'meta' => $this->meta,
+       ];
+   }
+    ```
 
 1. When creating or updating your model (eg. from a CMS action), make sure your form submits its request in the following format:
 
